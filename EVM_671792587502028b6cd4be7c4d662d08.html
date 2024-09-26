@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+    <title>EVM Cabals Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            font-family: "VT323", monospace;
+            font-weight: 400;
+            --primary-color: #ffd52c;
+            --secondary-color: #ff5c00;
+            --tertiary-color: #c72d04;
+            --background-color: #111;
+            scrollbar-color: var(--primary-color) var(--secondary-color);
+            font-size: clamp(16px, 2vw, 24px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            overflow: hidden;
+        }
+
+        .retro-container {
+            display: flex;
+            flex-direction: column;
+            width: 90vw;
+            height: 90vh;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-shadow: 0 0 1rem var(--primary-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .retro-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: url('/Users/mrod/IMG/hounds1.png') center/contain no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        header, footer {
+            flex: 0 0 auto;
+            padding: 1rem;
+            text-align: center;
+            background-color: var(--background-color);
+            z-index: 1;
+        }
+
+        main {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: var(--background-color);
+            z-index: 1;
+        }
+
+        section {
+            flex: 1 1 auto;
+            overflow: auto;
+            padding: 1rem;
+            z-index: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        a {
+            color: var(--primary-color);
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .audit-table {
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .copy-button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            margin-left: 8px;
+            font-family: inherit;
+        }
+
+        .copy-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2) 50%, transparent 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                font-size: clamp(14px, 4vw, 18px);x
+            }
+
+            th, td {
+                padding: 4px;
+            }
+
+            .retro-container {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Success
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="retro-container">
+        <header>
+            <h1>V4 REPORT</h1>
+        </header>
+        <main>
+            <section>
+                <article>
+                    <header class="center-text">
+                        <h2>Group Information 16018</h2>
+                    </header>
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <th>Blockchain</th>
+                                <th>Token Name</th>
+                                <th>Contract Address</th>
+                                <th>Dextools Link</th>
+                            </tr>
+                            
+                            <tr>
+                                <td>BSC</td>
+                                <td>Grok</td>
+                                <td>
+                                    <a href="https://bscscan.com/address/0x0009ae5a69b037ea74a900783fab457fa605ae5d" target="_blank">0x0009...ae5d</a>
+                                    <button class="copy-button" onclick="copyToClipboard('0x0009ae5a69b037ea74a900783fab457fa605ae5d')">Copy</button>
+                                </td>
+                                <td><a href="https://www.dextools.io/app/en/bsc/pair-explorer/0x9fdc429b2c8a79fe863b8727fc52f837831f47ff" target="_blank">Grok</a></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>ETH</td>
+                                <td>TRUMP</td>
+                                <td>
+                                    <a href="https://etherscan.io/address/0x52828b8a0109e1477bf9056a0918f153f9aea3c6" target="_blank">0x5282...a3c6</a>
+                                    <button class="copy-button" onclick="copyToClipboard('0x52828b8a0109e1477bf9056a0918f153f9aea3c6')">Copy</button>
+                                </td>
+                                <td><a href="https://www.dextools.io/app/en/ether/pair-explorer/0xdcf1759bef2787e2cac1d7d4016182fbb240627d" target="_blank">TRUMP</a></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>BSC</td>
+                                <td>TRUMP</td>
+                                <td>
+                                    <a href="https://bscscan.com/address/0x8479b19c5a3c43e024b2543582af0fc2fef2e6a8" target="_blank">0x8479...e6a8</a>
+                                    <button class="copy-button" onclick="copyToClipboard('0x8479b19c5a3c43e024b2543582af0fc2fef2e6a8')">Copy</button>
+                                </td>
+                                <td><a href="https://www.dextools.io/app/en/bsc/pair-explorer/0x18bfee8bf4d8b28aba27805de0abc0c50d81091e" target="_blank">TRUMP</a></td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    <header class="center-text">
+                        <h3>Funding History</h3>
+                    </header>
+                    <table class="audit-table">
+                        <tr>
+                            <th>Blockchain</th>
+                            <th>Token Name</th>
+                            <th>Deployer</th>
+                            <th>Funding</th>
+                       </tr>
+                        
+                        <tr>
+                            <td>BSC</td>
+                            <td>Grok</td>
+                            <td><a href="https://bscscan.com/address/0x3d85ee276106a1e6030616537d4e6189ddec5006" target="_blank">0x3d85...5006</a></td>
+                            <td>BSC Deployer? 1</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>ETH</td>
+                            <td>TRUMP</td>
+                            <td><a href="https://etherscan.io/address/0x1a28ba4a6b5e417c1160ff49c7b46e2da95aa101" target="_blank">0x1a28...a101</a></td>
+                            <td>ENS: ETH Registrar Controller, Union Chain</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>BSC</td>
+                            <td>TRUMP</td>
+                            <td><a href="https://bscscan.com/address/0x0e63d5d0f96fdfd95c69587438f9366c873bcc15" target="_blank">0x0e63...cc15</a></td>
+                            <td>BSC Deployer? 1</td>
+                        </tr>
+                        
+                    </table>
+                    <header class="center-text">
+                        <h3>Recent Launches</h3>
+                    </header>
+                    
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Blockchain</th>
+                <th style="padding: 8px;">Timestamp</th>
+                <th style="padding: 8px;">Token Name</th>
+                <th style="padding: 8px;">Contract Address</th>
+                <th style="padding: 8px;">Funding</th>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px;">ETH</td>
+                <td style="padding: 8px;">08-20-2024<br>01:21:39</td>
+                <td style="padding: 8px;">#Department Of Government Efficiency</td>
+                <td style="padding: 8px;"><a href="https://etherscan.io/address/0x81fcc294d91bd8ffc8a822d7df0e2fd2f8526c39" target="_blank">0x81fc...6c39</a></td>
+                <td style="padding: 8px;"><a href='https://etherscan.io/address/0x9d6b7e1bc40a47dca1e869aa3710e1261a593576'>0x9d6b&#8203;....&#8203;3576</a><a href='https://etherscan.io/address/0x1a4a11c98e23fe70d6d3603b46a6772c52865c42'>0x1a4a&#8203;....&#8203;5c42</a></td>
+            </tr>
+            </table>
+                    <header class="center-text">
+                        <h3>Rugs</h3>
+                    </header>
+                    <p>No tokens flagged as rugs yet...</p>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

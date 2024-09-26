@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+    <title>EVM Cabals Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            font-family: "VT323", monospace;
+            font-weight: 400;
+            --primary-color: #ffd52c;
+            --secondary-color: #ff5c00;
+            --tertiary-color: #c72d04;
+            --background-color: #111;
+            scrollbar-color: var(--primary-color) var(--secondary-color);
+            font-size: clamp(16px, 2vw, 24px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            overflow: hidden;
+        }
+
+        .retro-container {
+            display: flex;
+            flex-direction: column;
+            width: 90vw;
+            height: 90vh;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-shadow: 0 0 1rem var(--primary-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .retro-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: url('/Users/mrod/IMG/hounds1.png') center/contain no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        header, footer {
+            flex: 0 0 auto;
+            padding: 1rem;
+            text-align: center;
+            background-color: var(--background-color);
+            z-index: 1;
+        }
+
+        main {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: var(--background-color);
+            z-index: 1;
+        }
+
+        section {
+            flex: 1 1 auto;
+            overflow: auto;
+            padding: 1rem;
+            z-index: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        a {
+            color: var(--primary-color);
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .audit-table {
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .copy-button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            margin-left: 8px;
+            font-family: inherit;
+        }
+
+        .copy-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2) 50%, transparent 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                font-size: clamp(14px, 4vw, 18px);x
+            }
+
+            th, td {
+                padding: 4px;
+            }
+
+            .retro-container {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Success
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="retro-container">
+        <header>
+            <h1>V4 REPORT</h1>
+        </header>
+        <main>
+            <section>
+                <article>
+                    <header class="center-text">
+                        <h2>Group Information 11342</h2>
+                    </header>
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <th>Blockchain</th>
+                                <th>Token Name</th>
+                                <th>Contract Address</th>
+                                <th>Dextools Link</th>
+                            </tr>
+                            
+                            <tr>
+                                <td>ETH</td>
+                                <td>Neva Network</td>
+                                <td>
+                                    <a href="https://etherscan.io/address/0x3ada3bf9a5c5c59523d6193381c0d14787070e54" target="_blank">0x3ada...0e54</a>
+                                    <button class="copy-button" onclick="copyToClipboard('0x3ada3bf9a5c5c59523d6193381c0d14787070e54')">Copy</button>
+                                </td>
+                                <td><a href="https://www.dextools.io/app/en/ether/pair-explorer/0x200689b90b69736441585fa98884192efe208945" target="_blank">Neva Network</a></td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    <header class="center-text">
+                        <h3>Funding History</h3>
+                    </header>
+                    <table class="audit-table">
+                        <tr>
+                            <th>Blockchain</th>
+                            <th>Token Name</th>
+                            <th>Deployer</th>
+                            <th>Funding</th>
+                       </tr>
+                        
+                        <tr>
+                            <td>ETH</td>
+                            <td>Neva Network</td>
+                            <td><a href="https://etherscan.io/address/0x7e9c581520835507fdfb967979413baf3a92d60b" target="_blank">0x7e9c...d60b</a></td>
+                            <td><a href="https://etherscan.io/address/0x7e9c581520835507fdfb967979413baf3a92d60b" target="_blank">0x7e9c...d60b</a></td>
+                        </tr>
+                        
+                    </table>
+                    <header class="center-text">
+                        <h3>Recent Launches</h3>
+                    </header>
+                    
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Blockchain</th>
+                <th style="padding: 8px;">Timestamp</th>
+                <th style="padding: 8px;">Token Name</th>
+                <th style="padding: 8px;">Contract Address</th>
+                <th style="padding: 8px;">Funding</th>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px;">ETH</td>
+                <td style="padding: 8px;">08-20-2024<br>01:21:39</td>
+                <td style="padding: 8px;">STiiNT-iT</td>
+                <td style="padding: 8px;"><a href="https://etherscan.io/address/0xae28075b58ffc9a6ba22cc4ade7300e0c828d94c" target="_blank">0xae28...d94c</a></td>
+                <td style="padding: 8px;"><a href='https://etherscan.io/address/0x59fec45ab03cee5513b96af094942da2ce5a20e1'>0x59fe&#8203;....&#8203;20e1</a></td>
+            </tr>
+            </table>
+                    <header class="center-text">
+                        <h3>Rugs</h3>
+                    </header>
+                    <p>No tokens flagged as rugs yet...</p>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
